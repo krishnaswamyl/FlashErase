@@ -25,8 +25,13 @@ namespace FlashErase
             }
             comboBox1.Select();
             comboBox1.Update();
+            if(comboBox1.Items.Count>0)
+            {
+                comboBox1.SelectedIndex = 0;
+            }
             serialPort1 = new SerialPort();
             buttonErase.Enabled = false;
+            checkBoxLPC1768.Checked = true;
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -57,7 +62,7 @@ namespace FlashErase
 
         private void buttonConnect_Click(object sender, EventArgs e)
         {
-            if(buttonConnect.Text == "CONNECT")
+            if(buttonConnect.Text == "OPEN COM PORT")
             {
                 serialPort1.PortName = comboBox1.SelectedItem.ToString();
                 serialPort1.BaudRate = 115200;
@@ -80,7 +85,7 @@ namespace FlashErase
             {
                 serialPort1.Dispose();
                 serialPort1.Close();
-                buttonConnect.Text = "CONNECT";
+                buttonConnect.Text = "OPEN COM PORT";
                 buttonConnect.BackColor = Color.LimeGreen;
             }
             
@@ -186,26 +191,46 @@ namespace FlashErase
             richTextBox1.AppendText(treads);
             if (treads.Contains("0"))
             {
-                serialPort1.Write("U 23130\r");
+                serialPort1.Write("U 23130\r");     //send unlock code
 
             }
             treads = "RESPONSE: " + serialPort1.ReadLine() + "\n";
             richTextBox1.AppendText(treads);
             if (treads.Contains("0"))
             {
-                serialPort1.Write("P 0 29\r");
+                serialPort1.Write("P 0 29\r");      //Prepare sectors for write/ erase 
 
             }
             treads = "RESPONSE: " + serialPort1.ReadLine() + "\n";
             richTextBox1.AppendText(treads);
             if (treads.Contains("0"))
             {
-                serialPort1.Write("E 0 29\r");
+                serialPort1.Write("E 0 29\r");      //Erase sector
 
             }
             treads = "RESPONSE: " + serialPort1.ReadLine() + "\n";
             richTextBox1.AppendText(treads);
-            
+
+            serialPort1.Write("J \r");      // Read Part ID
+            Thread.Sleep(100);
+            treads = "RESPONSE: " + serialPort1.ReadLine() + "\n";
+            richTextBox1.AppendText(treads);
+            treads = serialPort1.ReadLine() + "\n";
+            richTextBox1.AppendText(treads);
+
+            serialPort1.Write("N \r");      // Read Part ID
+            Thread.Sleep(100);
+            treads = "RESPONSE: " + serialPort1.ReadLine() + "\n";
+            richTextBox1.AppendText(treads);
+            treads = serialPort1.ReadLine() + " - ";
+            richTextBox1.AppendText(treads);
+            treads = serialPort1.ReadLine()+" - " ;
+            richTextBox1.AppendText(treads);
+            treads = serialPort1.ReadLine()+" - ";
+            richTextBox1.AppendText(treads);
+            treads = serialPort1.ReadLine();
+            richTextBox1.AppendText(treads);
+
         }
 
         private void buttonSendSync_Click(object sender, EventArgs e)
@@ -338,6 +363,11 @@ namespace FlashErase
                 buttonErase.BackColor = Color.LimeGreen;
 
             }
+        }
+
+        private void checkBoxLPC1857_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -40,6 +40,8 @@
             this.checkBoxLPC1768 = new System.Windows.Forms.CheckBox();
             this.checkBoxLPC1857 = new System.Windows.Forms.CheckBox();
             this.buttonErase = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -62,7 +64,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(30, 47);
+            this.checkBox1.Location = new System.Drawing.Point(30, 27);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(48, 17);
             this.checkBox1.TabIndex = 2;
@@ -73,7 +75,7 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(30, 70);
+            this.checkBox2.Location = new System.Drawing.Point(30, 50);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(62, 17);
             this.checkBox2.TabIndex = 2;
@@ -88,7 +90,7 @@
             this.buttonConnect.Name = "buttonConnect";
             this.buttonConnect.Size = new System.Drawing.Size(121, 23);
             this.buttonConnect.TabIndex = 3;
-            this.buttonConnect.Text = "CONNECT";
+            this.buttonConnect.Text = "OPEN COM PORT";
             this.buttonConnect.UseVisualStyleBackColor = false;
             this.buttonConnect.Click += new System.EventHandler(this.buttonConnect_Click);
             // 
@@ -96,7 +98,7 @@
             // 
             this.richTextBox1.Location = new System.Drawing.Point(30, 146);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(268, 205);
+            this.richTextBox1.Size = new System.Drawing.Size(355, 205);
             this.richTextBox1.TabIndex = 4;
             this.richTextBox1.Text = "";
             // 
@@ -114,7 +116,7 @@
             // checkBoxLPC1768
             // 
             this.checkBoxLPC1768.AutoSize = true;
-            this.checkBoxLPC1768.Location = new System.Drawing.Point(114, 43);
+            this.checkBoxLPC1768.Location = new System.Drawing.Point(6, 19);
             this.checkBoxLPC1768.Name = "checkBoxLPC1768";
             this.checkBoxLPC1768.Size = new System.Drawing.Size(73, 17);
             this.checkBoxLPC1768.TabIndex = 6;
@@ -124,12 +126,13 @@
             // checkBoxLPC1857
             // 
             this.checkBoxLPC1857.AutoSize = true;
-            this.checkBoxLPC1857.Location = new System.Drawing.Point(114, 66);
+            this.checkBoxLPC1857.Location = new System.Drawing.Point(6, 42);
             this.checkBoxLPC1857.Name = "checkBoxLPC1857";
             this.checkBoxLPC1857.Size = new System.Drawing.Size(73, 17);
             this.checkBoxLPC1857.TabIndex = 6;
             this.checkBoxLPC1857.Text = "LPC 1857";
             this.checkBoxLPC1857.UseVisualStyleBackColor = true;
+            this.checkBoxLPC1857.CheckedChanged += new System.EventHandler(this.checkBoxLPC1857_CheckedChanged);
             // 
             // buttonErase
             // 
@@ -142,13 +145,23 @@
             this.buttonErase.UseVisualStyleBackColor = false;
             this.buttonErase.Click += new System.EventHandler(this.buttonEraseClicked);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.checkBoxLPC1768);
+            this.groupBox1.Controls.Add(this.checkBoxLPC1857);
+            this.groupBox1.Location = new System.Drawing.Point(98, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(85, 69);
+            this.groupBox1.TabIndex = 7;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Select Chip";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(397, 425);
-            this.Controls.Add(this.checkBoxLPC1857);
-            this.Controls.Add(this.checkBoxLPC1768);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.buttonErase);
             this.Controls.Add(this.buttonSendSync);
             this.Controls.Add(this.richTextBox1);
@@ -159,6 +172,8 @@
             this.Controls.Add(this.comboBox1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -177,6 +192,7 @@
         private System.Windows.Forms.CheckBox checkBoxLPC1768;
         private System.Windows.Forms.CheckBox checkBoxLPC1857;
         private System.Windows.Forms.Button buttonErase;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 
